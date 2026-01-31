@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Advanced Birthday My Love ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Rain Effect */
+        .rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+
+        .rain-container.active {
+            display: block;
+        }
+
+        .rain {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, rgba(174, 194, 224, 0.8));
+            animation: rainfall linear infinite;
+        }
+
+        @keyframes rainfall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.3;
+            }
+        }
+
+        /* Floating hearts animation */
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 8s infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* STRONGER Letter Envelope */
+        .envelope-wrapper {
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 450px;
+            height: 300px;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 10px;
+            animation: envelope-float 3s ease-in-out infinite;
+        }
+
+        @keyframes envelope-float {
+            0%, 100% { 
+                transform: translateY(0) rotateY(0deg);
+                filter: drop-shadow(0 20px 40px rgba(255, 23, 68, 0.6));
+            }
+            50% { 
+                transform: translateY(-30px) rotateY(5deg);
+                filter: drop-shadow(0 40px 80px rgba(255, 23, 68, 0.9));
+            }
+        }
+
+        .envelope:hover {
+            transform: translateY(-20px) scale(1.05);
+        }
+
+        .envelope.open {
+            transform: scale(0.9);
+        }
+
+        .envelope-top {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-bottom: 150px solid #ff1744;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            transform-origin: top;
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 10px 30px rgba(255, 23, 68, 0.5);
+        }
+
+        .envelope.open .envelope-top {
+            transform: rotateX(-180deg);
+            border-bottom-color: #c41039;
+        }
+
+        .envelope-bottom {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-top: 150px solid #ff5778;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .letter {
+            position: absolute;
+            width: 400px;
+            height: 280px;
+            background: linear-gradient(135deg, #fff9f9 0%, #ffe5e5 100%);
+            left: 25px;
+            top: 10px;
+            z-index: 2;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transition: all 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            border: 3px solid #ff1744;
+            position: relative;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-250px) scale(1.1);
+            box-shadow: 0 40px 100px rgba(255, 23, 68, 0.6);
+        }
+
+.no-zoom {
+    touch-action: none;
+  }
+        .letter h2 {
+            color: #ff1744;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 23, 68, 0.3);
+            animation: text-pulse 2s infinite;
+            position: relative;
+            z-index: 5;
+        }
+
+        @keyframes text-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                text-shadow: 2px 2px 4px rgba(255, 23, 68, 0.3);
+            }
+            50% { 
+                transform: scale(1.05);
+                text-shadow: 4px 4px 8px rgba(255, 23, 68, 0.6);
+            }
+        }
+
+        .letter p {
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            line-height: 1.8;
+            font-weight: 500;
+            position: relative;
+            z-index: 5;
+        }
+
+        .letter-hearts {
+            position: absolute;
+            font-size: 30px;
+            animation: heart-beat 1.5s infinite;
+            z-index: 4;
+        }
+
+        .letter-hearts:nth-child(1) { top: 10px; left: 10px; animation-delay: 0s; }
+        .letter-hearts:nth-child(2) { top: 10px; right: 10px; animation-delay: 0.3s; }
+        .letter-hearts:nth-child(3) { bottom: 10px; left: 10px; animation-delay: 0.6s; }
+        .letter-hearts:nth-child(4) { bottom: 10px; right: 10px; animation-delay: 0.9s; }
+
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 22px;
+            animation: pulse-glow 2s infinite;
+            text-shadow: 0 0 20px #ff1744;
+            font-weight: bold;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                opacity: 1; 
+                text-shadow: 0 0 20px #ff1744;
+                transform: translateX(-50%) scale(1);
+            }
+            50% { 
+                opacity: 0.7; 
+                text-shadow: 0 0 40px #ff1744, 0 0 60px #ff1744;
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        /* Main Content (Hidden Initially) */
+        .main-content {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .main-content.show {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Greeting Card */
+        .greeting-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            animation: slideIn 1s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .greeting-card h1 {
+            color: #e91e63;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .greeting-card .message {
+            font-size: 20px;
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .greeting-card .signature {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #e91e63;
+            font-weight: bold;
+        }
+
+        /* Photo/Video Gallery - Carousel Style */
+        .photo-gallery {
+            margin-top: 40px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .photo-gallery h2 {
+            color: #e91e63;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #f5f5f5;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-media {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #ffeaa7, #fd79a8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+      /* Fix carousel images and videos */
+.carousel-media img,
+.carousel-media video {
+    width: 100%;           /* full width of the container */
+    height: auto;          /* keep aspect ratio */
+    object-fit: contain;   /* fit inside without cropping */
+}
+
+
+        .carousel-caption {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .carousel-controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .carousel-btn {
+            padding: 12px 30px;
+            margin: 0 10px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .carousel-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Placeholder styling */
+        .placeholder {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .timeline h2 {
+            color: #e91e63;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            border-left: 3px solid #e91e63;
+            margin-left: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '❤️';
+            position: absolute;
+            left: -13px;
+            top: 20px;
+            background: white;
+            font-size: 20px;
+        }
+
+        .timeline-date {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Countdown/Special Message */
+        .special-message {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .special-message h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .special-message p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .envelope { 
+                width: 90%; 
+                height: auto;
+                max-width: 350px;
+            }
+            .envelope-top { 
+                border-left: 175px solid transparent; 
+                border-right: 175px solid transparent; 
+                border-bottom: 120px solid #ff1744;
+            }
+            .envelope-bottom { 
+                border-left: 175px solid transparent; 
+                border-right: 175px solid transparent; 
+                border-top: 120px solid #ff5778;
+            }
+            .letter { 
+                width: 90%; 
+                height: auto;
+                min-height: 200px;
+                padding: 20px;
+                left: 5%;
+            }
+            .letter h2 { font-size: 20px; }
+            .letter p { font-size: 14px; }
+            .greeting-card h1 { font-size: 36px; }
+            .carousel-container { height: 400px; }
+            .carousel-media { height: 320px; }
+
+    </style>
+</head>
+<body>
+    <!-- Rain Container -->
+    <div class="rain-container" id="rainContainer"></div>
+
+    <!-- Floating Hearts -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Envelope Letter -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope" id="envelope">
+            <div class="envelope-top"></div>
+            <div class="letter">
+                <span class="letter-hearts">💖</span>
+                <span class="letter-hearts">💖</span>
+                <span class="letter-hearts">💖</span>
+                <span class="letter-hearts">💖</span>
+                <h2>To My Beautiful Angel 💕</h2>
+                <p>Happy Advanced Birthday, My Love!<br><br>
+                Click to open your special birthday surprise...</p>
+            </div>
+            <div class="envelope-bottom"></div>
+        </div>
+        <div class="click-hint">💌 Click to Open Your Surprise 💌</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Greeting Card -->
+        <div class="greeting-card">
+            <h1>Happy Advanced Birthday My Love! 🎉</h1>
+            <div class="message">
+                On this special day, I want you to know how much you mean to me.
+                Every moment with you is a treasure, every smile you give lights up my world.
+                You make every day brighter, every challenge easier, and every joy sweeter.
+                <br><br>
+                Here's to celebrating YOU today and always! 
+                Thank you for being the amazing person you are.
+                I love you more than words can express! ❤️
+            </div>
+            <div class="signature">With all my love, Always Yours 💖</div>
+        </div>
+
+        <!-- Photo/Video Gallery Carousel -->
+        <div class="photo-gallery">
+            <h2>Our Beautiful Memories 📸💕</h2>
+            <div class="carousel-container">
+                <!-- Slide 1 - First Photo (triggers rain) -->
+                <div class="carousel-slide active" data-rain="true">
+                    <div class="carousel-media">
+                        <img src="uploads/image1.jpeg" class="no-zoom" alt="Our rainy day">
+
+             
+                    </div>
+                    <div class="carousel-caption">17th September 2024 - The rainy day that changed everything 🌧️💕</div>
+                </div>
+                
+                <!-- Slide 2 - First Video -->
+                <div class="carousel-slide">
+                    <div class="carousel-media">
+                        <video controls>
+    <source src="uploads/video1.mp4" class="no-zoom" type="video/mp4">
+</video>
+
+                        
+                    </div>
+                    <div class="carousel-caption">Our temple visit - Our first date 🛕💝</div>
+                </div>
+                
+                <!-- Slide 3 - Second Photo -->
+                <div class="carousel-slide">
+                    <div class="carousel-media">
+                     <img src="uploads/image2.jpeg" class="no-zoom" alt="Special moment"> 
+                        
+                    </div>
+                    <div class="carousel-caption">A moment I'll treasure forever 💗</div>
+                </div>
+                
+                <!-- Slide 4 - Second Video -->
+                <div class="carousel-slide">
+                    <div class="carousel-media">
+                        <video controls>
+    <source src="uploads/vidoe2.mp4" class="no-zoom" type="video/mp4">
+</video>
+
+                        
+                    </div>
+                    <div class="carousel-caption">Together is my favorite place to be 💖</div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="previousSlide()">❮ Previous</button>
+                <button class="carousel-btn" onclick="nextSlide()">Next ❯</button>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <h2>Our Story Together 💑</h2>
+            <div class="timeline-item">
+                <div class="timeline-date">17th September 2024 🌧️</div>
+                <div class="timeline-text">
+                    It was raining that day when we first met. Little did I know that the rain was bringing the most beautiful blessing into my life - YOU. That rainy day will forever be special to me.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Our First Date - Temple Visit 🛕</div>
+                <div class="timeline-text">
+                    Our first date was at the temple, and it was perfect. In that sacred place, I felt something divine about us being together. I knew you were meant to be in my life.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Falling in Love 💕</div>
+                <div class="timeline-text">
+                    I fall in love with you more and more every single day. Your kindness, your laugh, your heart - everything about you makes me fall deeper. You're my perfect person.
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Today & Forever ♾️</div>
+                <div class="timeline-text">
+                    Happy Advanced Birthday to the love of my life! Here's to many more memories, adventures, and birthdays together. I love you! 💕
+                </div>
+            </div>
+        </div>
+
+        <!-- Special Message -->
+        <div class="special-message">
+            <h3>You Are My Everything 💝</h3>
+            <p>
+                Thank you for being you. Thank you for choosing me. Thank you for every smile, every hug, every moment.
+                You deserve the world, and I promise to give you my best every single day.
+                <br><br>
+                Happy Advanced Birthday, Beautiful! Here's to forever with you! 🎂🎈
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        let rainCreated = false;
+
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }, 500);
+        }
+
+        // Create rain effect
+        function createRain() {
+            const rainContainer = document.getElementById('rainContainer');
+            rainContainer.classList.add('active');
+            
+            // Create 150 rain drops
+            for (let i = 0; i < 150; i++) {
+                const rain = document.createElement('div');
+                rain.className = 'rain';
+                rain.style.left = Math.random() * 100 + '%';
+                rain.style.animationDuration = (Math.random() * 0.5 + 0.5) + 's';
+                rain.style.animationDelay = Math.random() * 2 + 's';
+                rainContainer.appendChild(rain);
+            }
+        }
+
+        // Play sound effect
+        function playOpenSound() {
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBjGJ0fPTgjMGHm7A7+OZUQ0PVanr8bJhGAg+ktj02okzBxlptOzqoFQUC0yg4PSxYh0FNI/R9NF+KgUpe8jx3JFBCxVht+vsp1gWDUuk4/C1aB4IMozU9c+ANAYeb8LvznMrBid7yO/emUYOFFeu6u2aSxENT6Lj7rhjHQU2kdP2znwqBSh8yPLai0ESGGa36uuiVxQKTqDk77VmHggxjdT1y3ouByl8xu/ZkEgPFV216+6dUA0PT6Tk7rNhHgU1j9L10nsvBSh7x/HajT8KFmG37OumXRgMU6Lk8LNiHQY3jdP1y3otBSh7x+/Yj0cOFVWu7O2gVBMLUKHl77VnHwgxjtT1y3otBSd7x+/YkEcOFVSt7O+iVxQKT6Hk8LNhHgU1jtL1z3suBSh7x+/Yj0gPFVSs7fGgUhMMUKDk8LRjHwY2jdP1y3otBSh8x+/Yk0cOFVOu7O+iVhULT6Hk8LRiHgU1jtP1z3suBSh7x+/Yj0cOFVWs7O+gVBQLUKDk8LRjHgU3jdP1y3ouBSh7x+/Yk0cOFVOu7O6iVhULTqHk8LRiHgU2jdP1z3suBSh7x+/Yj0gPFVOs7e6gVBUMUKDk8LNjHwY2jdL10HsvBSh7x+/Yj0cOFVSu7O2hVBULT6Hk8LRiHQU2jtL10HwvBSh7x+/Yj0cOFVSt7O6hVBQLTqHj8LNjHQU2jdL10HsuBSh7x+/Xj0gOFVWu7O6hUxULTqDj8LNjHgU2jdP1z3suBSh7x+/Yj0cOFVSt7O6iVBQLT6Hk8LRiHgU2jtL1z3suBSh7x+/Yj0gPFVWu7O6iVBQLTqHk8LRiHgU1jtL10HsuBSh7x+/Yj0gPFVSt7e6hVBULTqHk8LNiHgU2jtH1z3suBSh7x+/YkEgPFVWu7e6hVBQLT6Dk8LRjHQU1jtL10HwvBSh8x+/Yj0gPFVWu7e6hVBULTqHk8LNiHgU1jtL1z3svBSh7x+/YkEgPFVSt7e6iVBQLT6Hk8LNjHgU1jtL1z3svBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNiHgU1jtL1z3svBSh7x+/Yj0gPFVSt7e6hVBQLT6Dk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBQLTqHk8LRiHgU1jtL1z3suBSh7x+/Yj0gOFVSt7e6hVBULTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6iVBULTqHk8LNiHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVSt7e6hVBULTqHk8LNjHgU1jtL1z3svBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNiHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNiHQU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNiHQU1jtL1z3suBSh7x+/Yj0gPFVSt7O6hVBULTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNiHgU1jtL1z3suBSh7x+/Yj0gPFVSt7e6iVBQLTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6iVBQLTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk8LNjHgU1jtL1z3suBSh7x+/YkEgPFVWt7e6hVBULTqHk8LNjHQU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBQLTqHk77NjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RiHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RiHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBULTqHk77RjHgU1jtL1z3suBSh7x+/Yj0gPFVWt7e6hVBUL');
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            } catch (e) {
+                console.log('Audio creation failed:', e);
+            }
+        }
+
+        // Envelope opening with sound
+        const envelope = document.getElementById('envelope');
+        const envelopeWrapper = document.getElementById('envelopeWrapper');
+        const mainContent = document.getElementById('mainContent');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('open');
+            playOpenSound();
+            
+            setTimeout(() => {
+                envelopeWrapper.style.display = 'none';
+                mainContent.classList.add('show');
+                
+                // Trigger rain when first slide is shown
+                checkRainTrigger();
+            }, 1500);
+        });
+
+        // Carousel functions
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            // Check if current slide should trigger rain
+            checkRainTrigger();
+        }
+
+        function checkRainTrigger() {
+            const currentSlideElement = slides[currentSlide];
+            if (currentSlideElement && currentSlideElement.dataset.rain === 'true' && !rainCreated) {
+                createRain();
+                rainCreated = true;
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initialize
+        createHearts();
+    </script>
+</body>
+</html>
